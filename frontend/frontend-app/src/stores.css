@@ -1,0 +1,107 @@
+/* General page layout */
+.stores-page {
+  display: flex;
+  font-family: 'Arial', sans-serif;
+  min-height: 100vh;
+  background-color: #f5f6fa;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background-color: #2f3640;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 12px 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.sidebar li:hover {
+  background-color: #718093;
+}
+
+.sidebar li.active {
+  background-color: #00a8ff;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Store cards container */
+.store-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Store card */
+.store-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.store-card:hover {
+  transform: translateY(-5px);
+}
+
+.store-card h3 {
+  margin-top: 0;
+  color: #2f3640;
+}
+
+.store-card p {
+  margin: 6px 0;
+  color: #555;
+}
+
+/* Rating section */
+.rating-section {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.rating-section input {
+  width: 60px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.rating-section button {
+  padding: 5px 10px;
+  background-color: #00a8ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.rating-section button:hover {
+  background-color: #0097e6;
+}

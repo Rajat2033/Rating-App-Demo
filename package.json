@@ -1,0 +1,19 @@
+{
+  "name": "intern-coding-challeneg-2",
+  "version": "1.0.0",
+  "description": "This full-stack web app uses React.js, Express.js, and MySQL to manage store ratings. It supports three roles: Admin, Store Owner, and User. Admins manage users, stores, and view dashboards; Store Owners see average ratings and feedback; Users can register, log in, search stores, and submit or update ratings with secure validations.",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm start",
+    "client": "cd frontend-app && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
