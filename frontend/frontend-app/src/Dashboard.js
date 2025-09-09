@@ -9,6 +9,7 @@ export default function Dashboard() {
   const [users, setUsers] = useState([]);
   const [stores, setStores] = useState([]);
   const [ratings, setRatings] = useState([]);
+  const [ownerForm, setOwnerForm] = useState({ name: "", email: "", password: "", address: "" });
   const navigate = useNavigate();
 
   // ---------------- Fetch Functions ----------------
@@ -55,6 +56,22 @@ export default function Dashboard() {
     navigate("/login");
   };
 
+  // ---------------- Add Owner ----------------
+  const handleAddOwner = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem("token");
+      const res = await API.post("/users/addOwner", ownerForm, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      alert(res.data.message);
+      setOwnerForm({ name: "", email: "", password: "", address: "" });
+    } catch (err) {
+      console.error(err);
+      alert(err.response?.data?.message || "Failed to add owner");
+    }
+  };
+
   return (
     <div className="dashboard">
       {/* Sidebar */}
@@ -64,6 +81,7 @@ export default function Dashboard() {
           <li onClick={() => setActiveTab("users")}>User Details</li>
           <li onClick={() => setActiveTab("stores")}>Store Details</li>
           <li onClick={() => setActiveTab("addStore")}>Add Store</li>
+          <li onClick={() => setActiveTab("addOwner")}>Add Owner</li>
           <li onClick={() => setActiveTab("ratings")}>Rating Details</li>
           <li onClick={handleLogout}>Logout</li>
         </ul>
@@ -131,6 +149,44 @@ export default function Dashboard() {
         {activeTab === "addStore" && (
           <div>
             <AddStore onStoreAdded={fetchStores} />
+          </div>
+        )}
+
+        {/* Add Owner Form */}
+        {activeTab === "addOwner" && (
+          <div>
+            <h2>Add New Store Owner</h2>
+            <form onSubmit={handleAddOwner} className="styled-form">
+              <input
+                type="text"
+                placeholder="Name"
+                value={ownerForm.name}
+                onChange={(e) => setOwnerForm({ ...ownerForm, name: e.target.value })}
+                required
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                value={ownerForm.email}
+                onChange={(e) => setOwnerForm({ ...ownerForm, email: e.target.value })}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                value={ownerForm.password}
+                onChange={(e) => setOwnerForm({ ...ownerForm, password: e.target.value })}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Address"
+                value={ownerForm.address}
+                onChange={(e) => setOwnerForm({ ...ownerForm, address: e.target.value })}
+                required
+              />
+              <button type="submit">Add Owner</button>
+            </form>
           </div>
         )}
 

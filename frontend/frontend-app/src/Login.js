@@ -8,14 +8,27 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await API.post("/auth/login", { email, password });
-      localStorage.setItem("token", data.token);
-      if (data.role === "ADMIN") navigate("/dashboard");
-      else navigate("/stores");
+      const res = await API.post("/auth/login", { email, password });
+      const { token, role } = res.data;
+
+      // Save token to localStorage
+      localStorage.setItem("token", token);
+
+      // Redirect based on role
+      if (role === "ADMIN") {
+        navigate("/dashboard");
+      } else if (role === "OWNER") {
+        navigate("/owner-dashboard");
+      } else if (role === "USER") {
+        navigate("/stores");
+      } else {
+        alert("Unknown role");
+      }
     } catch (err) {
+      console.error(err);
       alert("Login failed");
     }
   };

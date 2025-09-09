@@ -1,6 +1,8 @@
+/* ---------- Dashboard Layout ---------- */
 .dashboard {
   display: flex;
   height: 100vh;
+  font-family: Arial, sans-serif;
 }
 
 .sidebar {
@@ -37,7 +39,8 @@
   background: #f9f9f9;
   overflow-y: auto;
 }
-/* Table styles */
+
+/* ---------- Table Styles ---------- */
 .styled-table {
   width: 100%;
   border-collapse: collapse;
@@ -65,7 +68,8 @@
 .styled-table tr:hover {
   background-color: #f1f1f1;
 }
-/* Add Owner Form Styling */
+
+/* ---------- Form Styles (Add Store / Add Owner) ---------- */
 .styled-form {
   display: flex;
   flex-direction: column;
@@ -114,3 +118,35 @@
   color: #333;
 }
 
+/* ---------- Owner Store Cards ---------- */
+.store-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.store-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 250px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.store-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.store-card h3 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.store-card p {
+  margin: 5px 0;
+  color: #555;
+  font-size: 14px;
+}

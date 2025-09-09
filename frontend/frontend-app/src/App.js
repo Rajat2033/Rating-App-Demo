@@ -5,6 +5,7 @@ import Signup from "./Signup";
 import Stores from "./Stores";
 import Dashboard from "./Dashboard";
 import AddStore from "./addstore";
+import OwnerDashboard from "./ownerDashboard"; 
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
         <Route path="/" element={<Signup />} />
         <Route path="/stores" element={<Stores />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/owner-dashboard" element={<OwnerDashboard />} />
+
+
       </Routes>
     </BrowserRouter>
   );

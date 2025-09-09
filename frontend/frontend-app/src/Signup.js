@@ -4,7 +4,14 @@ import { useNavigate, Link } from "react-router-dom";
 import "./signup.css"; 
 
 export default function Signup() {
-  const [form, setForm] = useState({ name: "", email: "", address: "", password: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    address: "",
+    password: "",
+    role: "USER", // 👈 always USER
+  });
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -12,9 +19,10 @@ export default function Signup() {
     try {
       await API.post("/auth/signup", form);
       alert("Signup success, please login");
-      navigate("/login"); // redirect to login
-    } catch {
-      alert("Signup failed");
+      navigate("/login");
+    } catch (err) {
+      console.error("Signup failed:", err.response?.data || err.message);
+      alert(err.response?.data?.message || "Signup failed");
     }
   };
 
@@ -36,27 +44,33 @@ export default function Signup() {
           <input
             type="text"
             placeholder="Full Name"
+            value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             required
           />
           <input
             type="email"
             placeholder="Email"
+            value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             required
           />
           <input
             type="text"
             placeholder="Address"
+            value={form.address}
             onChange={(e) => setForm({ ...form, address: e.target.value })}
             required
           />
           <input
             type="password"
             placeholder="Password"
+            value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
             required
           />
+
+          {/* No role selection → role is always USER */}
           <button type="submit" className="btn">Signup</button>
         </form>
         <p>

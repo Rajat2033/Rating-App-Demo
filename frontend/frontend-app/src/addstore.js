@@ -3,7 +3,7 @@ import API from "./api";
 import { useNavigate } from "react-router-dom";
 import "./addstore.css";
 
-export default function AddStore({ onStoreAdded }) {
+export default function AddStore() {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -20,17 +20,9 @@ export default function AddStore({ onStoreAdded }) {
       await API.post("/stores", form, {
         headers: { Authorization: `Bearer ${token}` },
       });
-
       alert("Store added successfully!");
-
-      // Clear form after success
-      setForm({ name: "", email: "", address: "", owner_id: "" });
-
-      // Refresh stores table in dashboard
-      if (onStoreAdded) onStoreAdded();
-
+      navigate("/dashboard");
     } catch (err) {
-      console.error(err);
       alert("Failed to add store. Only admin can add stores.");
     }
   };
